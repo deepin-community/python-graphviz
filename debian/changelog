@@ -1,5 +1,95 @@
-template-repository (1.0-1) unstable; urgency=medium
+python-graphviz (0.20.1-2) unstable; urgency=medium
 
-  * Initial release
+  * Delete "doctest-output" directory from dist-packages
+    (Closes: #1029297) Thanks Chris Lamb
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Diane Trout <diane@ghic.org>  Tue, 15 Aug 2023 13:06:33 -0700
+
+python-graphviz (0.20.1-1) unstable; urgency=medium
+
+  [ Debian Janitor]
+  * Bump debhelper from old 12 to 13.
+  * Update standards version to 4.6.2, no changes needed.
+
+  [ Diane Trout ] 
+  * New upstream release
+
+ -- Diane Trout <diane@ghic.org>  Wed, 18 Aug 2021 16:56:02 -0700
+
+python-graphviz (0.14.2-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+  [ Diane Trout ]
+  * New upstream release
+
+ -- Diane Trout <diane@ghic.org>  Fri, 06 Nov 2020 14:45:15 -0800
+
+python-graphviz (0.14.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 0.14.1
+
+ -- TANIGUCHI Takaki <takaki@debian.org>  Sun, 06 Sep 2020 11:31:55 +0900
+
+python-graphviz (0.14-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Convert git repository from git-dpm to gbp layout
+  * Use debhelper-compat instead of debian/compat.
+
+  [ TANIGUCHI Takaki ]
+  * Team upload.
+  * New upstream version 0.14
+  * d/rules: remove test log
+  * Bump Standards-Version to 4.5.0
+  * Bump debhelper from old 11 to 12.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+ -- TANIGUCHI Takaki <takaki@debian.org>  Mon, 27 Apr 2020 10:26:35 +0900
+
+python-graphviz (0.8.4-2) unstable; urgency=medium
+
+  * Add additional test dependencies to autopkgtests tests
+
+ -- Diane Trout <diane@ghic.org>  Mon, 23 Jul 2018 12:52:41 -0700
+
+python-graphviz (0.8.4-1) unstable; urgency=medium
+
+  [ Diane Trout ]
+  * Add missing Vcs-* tags
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/watch: Use https protocol
+  * d/changelog: Remove trailing whitespaces
+  * d/tests: Use AUTOPKGTEST_TMP instead of ADTTMP
+  * d/control: Remove ancient X-Python-Version field
+  * d/control: Remove ancient X-Python3-Version field
+
+  [ Diane Trout ]
+  * New upstream release
+  * Remove dh_auto_test-runs-the-tests-in-a-subdirectory patch
+  * Update debhelper compat to 11
+  * Update Standards-Version to 4.1.4. No changes needed.
+  * Allow running tests multiple times.
+  * Add additional dependencies for running tests
+  * Remove unneeded Testsuite header
+  * Install examples
+  * Delete .pytest_cache so rebuilding in the same tree works
+  * Delete .coverage and htmlcov files installed by mistake
+  * Ignore test_pipe_pipe_invalid_data_mocked test requires pytest-mock >= 1.8
+    - TODO: Delete after pytest-mock is updated
+
+ -- Diane Trout <diane@ghic.org>  Sun, 22 Jul 2018 21:30:14 -0700
+
+python-graphviz (0.5.2-1) unstable; urgency=low
+
+  * Initial packaging (Closes: #849050)
+  * Note: Upstream name on pypi is graphviz, but that would conflict with the
+    C graphviz source package name
+
+ -- Diane Trout <diane@ghic.org>  Wed, 21 Dec 2016 13:55:52 -0800

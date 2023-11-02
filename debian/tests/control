@@ -1,0 +1,17 @@
+Test-Command: set -e
+ ; for py in $(py3versions -r 2>/dev/null)
+ ; do pushd "tests"
+ ; echo "Testing with $py:"
+ ; $py -m pytest -k 'not test_pipe_pipe_invalid_data_mocked'
+ ; popd
+ ; done
+Depends: python3-all, @,
+ python3-coverage,
+ python3-flake8,
+ python3-mock,
+ python3-pep8-naming,
+ python3-pytest,
+ python3-pytest-doctestplus,
+ python3-pytest-mock,
+ python3-pytest-cov,
+ python3-unittest2
