@@ -20,7 +20,7 @@ __all__ = ['attach',
 log = logging.getLogger(__name__)
 
 
-def attach(object: typing.Any, name: str) -> typing.Callable:
+def attach(object: typing.Any, /, name: str) -> typing.Callable:
     """Return a decorator doing ``setattr(object, name)`` with its argument.
 
     >>> spam = type('Spam', (object,), {})()  # doctest: +NO_EXE
@@ -39,7 +39,7 @@ def attach(object: typing.Any, name: str) -> typing.Callable:
     return decorator
 
 
-def mkdirs(filename: typing.Union[os.PathLike, str], *, mode: int = 0o777) -> None:
+def mkdirs(filename: typing.Union[os.PathLike, str], /, *, mode: int = 0o777) -> None:
     """Recursively create directories up to the path of ``filename``
         as needed."""
     dirname = os.path.dirname(filename)
@@ -49,7 +49,7 @@ def mkdirs(filename: typing.Union[os.PathLike, str], *, mode: int = 0o777) -> No
     os.makedirs(dirname, mode=mode, exist_ok=True)
 
 
-def mapping_items(mapping):
+def mapping_items(mapping, /):
     """Return an iterator over the ``mapping`` items,
         sort if it's a plain dict.
 
@@ -67,17 +67,17 @@ def mapping_items(mapping):
 
 
 @typing.overload
-def promote_pathlike(filepath: typing.Union[os.PathLike, str]) -> pathlib.Path:
+def promote_pathlike(filepath: typing.Union[os.PathLike, str], /) -> pathlib.Path:
     """Return path object for path-like-object."""
 
 
 @typing.overload
-def promote_pathlike(filepath: None) -> None:
+def promote_pathlike(filepath: None, /) -> None:
     """Return None for None."""
 
 
 @typing.overload
-def promote_pathlike(filepath: typing.Union[os.PathLike, str, None]
+def promote_pathlike(filepath: typing.Union[os.PathLike, str, None], /,
                      ) -> typing.Optional[pathlib.Path]:
     """Return path object or ``None`` depending on ``filepath``."""
 
@@ -92,7 +92,7 @@ def promote_pathlike(filepath: typing.Union[os.PathLike, str, None]
     return pathlib.Path(filepath) if filepath is not None else None
 
 
-def promote_pathlike_directory(directory: typing.Union[os.PathLike, str, None], *,
+def promote_pathlike_directory(directory: typing.Union[os.PathLike, str, None], /, *,
                                default: typing.Union[os.PathLike, str, None] = None,
                                ) -> pathlib.Path:
     """Return path-like object ``directory`` promoted into a path object (default to ``os.curdir``).
@@ -106,6 +106,7 @@ def promote_pathlike_directory(directory: typing.Union[os.PathLike, str, None], 
 
 def deprecate_positional_args(*,
                               supported_number: int,
+                              ignore_argnames: typing.Sequence[str] = ('cls', 'self'),
                               category: typing.Type[Warning] = PendingDeprecationWarning,
                               stacklevel: int = 1):
     """Mark supported_number of positional arguments as the maximum.
@@ -113,6 +114,8 @@ def deprecate_positional_args(*,
     Args:
         supported_number: Number of positional arguments
             for which no warning is raised.
+        ignore_argnames: Name(s) of arguments to ignore
+            ('cls' and 'self' by default).
         category: Type of Warning to raise
             or None to return a nulldecorator
             returning the undecorated function.
@@ -143,7 +146,8 @@ def deprecate_positional_args(*,
     def decorator(func):
         signature = inspect.signature(func)
         argnames = [name for name, param in signature.parameters.items()
-                    if param.kind == inspect.Parameter.POSITIONAL_OR_KEYWORD]
+                    if param.kind == inspect.Parameter.POSITIONAL_OR_KEYWORD
+                    and name not in ignore_argnames]
         log.debug('deprecate positional args: %s.%s(%r)',
                   func.__module__, func.__qualname__,
                   argnames[supported_number:])
@@ -162,7 +166,8 @@ def deprecate_positional_args(*,
                 wanted = ', '.join(f'{name}={value!r}'
                                    for name, value in deprecated.items())
                 warnings.warn(f'The signature of {func.__name__} will be reduced'
-                              f' to {supported_number} positional args'
+                              f' to {supported_number} positional arg'
+                              f"{'s' if supported_number > 1 else ''}"
                               f' {list(supported)}: pass {wanted}'
                               ' as keyword arg(s)',
                               stacklevel=stacklevel,

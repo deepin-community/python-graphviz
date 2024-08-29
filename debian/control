@@ -3,20 +3,19 @@ Maintainer: Diane Trout <diane@ghic.org>
 Section: python
 Priority: optional
 Build-Depends: debhelper-compat (= 13),
-               dh-python,
+               dh-sequence-python3,
                graphviz,
                python3-all,
                python3-coverage,
                python3-flake8,
-               python3-mock,
                python3-pep8-naming,
                python3-pytest,
                python3-pytest-doctestplus,
                python3-pytest-mock,
                python3-pytest-cov,
                python3-setuptools,
-               python3-unittest2
 Standards-Version: 4.6.2
+Rules-Requires-Root: no
 Homepage: https://github.com/xflr6/graphviz
 Vcs-Git: https://salsa.debian.org/python-team/packages/python-graphviz.git
 Vcs-Browser: https://salsa.debian.org/python-team/packages/python-graphviz

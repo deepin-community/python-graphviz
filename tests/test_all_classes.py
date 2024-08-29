@@ -210,7 +210,7 @@ def test_save_mocked(mocker, dot, filename='nonfilename', directory='nondirector
     mock_makedirs = mocker.patch('os.makedirs', autospec=True)
     mock_open = mocker.patch('builtins.open', mocker.mock_open())
 
-    with pytest.deprecated_call():
+    with pytest.deprecated_call(match=r'1 positional arg\b'):
         assert dot.save(filename, directory) == dot.filepath
 
     assert dot.filename == filename
@@ -221,6 +221,12 @@ def test_save_mocked(mocker, dot, filename='nonfilename', directory='nondirector
     expected_calls = ([mocker.call(dot.source)] if type(dot).__name__ == 'Source'
                       else [mocker.call(mocker.ANY), mocker.call('}\n')])
     assert mock_open.return_value.write.call_args_list == expected_calls
+
+
+@pytest.mark.exe
+def test_pipe(dot, encoding='utf-8'):
+    svg = dot.pipe(format='svg', encoding=encoding)
+    assert svg.startswith('<?xml ')
 
 
 @pytest.mark.parametrize(

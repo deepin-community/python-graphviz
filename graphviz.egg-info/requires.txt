@@ -7,13 +7,12 @@ wheel
 twine
 
 [docs]
-sphinx>=5
+sphinx<7,>=5
 sphinx-autodoc-typehints
 sphinx-rtd-theme
 
 [test]
-pytest>=7
+pytest<8.1,>=7
 pytest-mock>=3
-mock>=4
 pytest-cov
 coverage

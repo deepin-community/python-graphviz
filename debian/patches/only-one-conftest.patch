@@ -1,0 +1,54 @@
+Author: Diane Trout <diane@ghic.org>
+Description: pytest gets confused with two conftest.py files and
+ generates an "import file mismatch" error.
+ This merges the contents so there's only one conftest.py file to find.
+Bugs: https://github.com/xflr6/graphviz/issues/219
+--- a/tests/backend/conftest.py
++++ /dev/null
+@@ -1,22 +0,0 @@
+-"""pytest fixtures for backend."""
+-
+-import pytest
+-
+-
+-@pytest.fixture
+-def mock_run(mocker):
+-    yield mocker.patch('subprocess.run', autospec=True)
+-
+-
+-@pytest.fixture
+-def mock_popen(mocker):
+-    yield mocker.patch('subprocess.Popen', autospec=True)
+-
+-
+-@pytest.fixture
+-def mock_startfile(mocker, platform):
+-    if platform == 'windows':
+-        kwargs = {'autospec': True}
+-    else:
+-        kwargs = {'create': True, 'new_callable': mocker.Mock}
+-    yield mocker.patch('os.startfile', **kwargs)
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -98,3 +98,21 @@
+ def unknown_platform(monkeypatch, name='nonplatform'):
+     monkeypatch.setattr('graphviz.backend.viewing.PLATFORM', name)
+     yield name
++
++@pytest.fixture
++def mock_run(mocker):
++    yield mocker.patch('subprocess.run', autospec=True)
++
++
++@pytest.fixture
++def mock_popen(mocker):
++    yield mocker.patch('subprocess.Popen', autospec=True)
++
++
++@pytest.fixture
++def mock_startfile(mocker, platform):
++    if platform == 'windows':
++        kwargs = {'autospec': True}
++    else:
++        kwargs = {'create': True, 'new_callable': mocker.Mock}
++    yield mocker.patch('os.startfile', **kwargs)

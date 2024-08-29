@@ -1,3 +1,23 @@
+python-graphviz (0.20.2-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #1063952) (Closes: #1066796)
+  * Remove pytest skip of test_pipe_pipe_data_mocked, resolved upstream.
+  * Add only-one-conftest.patch to resolve import file mismatch pytest
+    error.
+
+ -- Diane Trout <diane@ghic.org>  Wed, 20 Mar 2024 10:30:07 -0700
+
+python-graphviz (0.20.1+20240103-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream snapshot 0.20.1+20240103 to support Python 3.12
+    (Closes: #1056473, #1058404)
+  * remove obsolete dependencies on python3-mock & python3-unittest2
+    (Closes: #1058968)
+  * set "Rules-Requires-Root: no"
+
+ -- Alexandre Detiste <tchet@debian.org>  Wed, 03 Jan 2024 21:09:04 +0100
+
 python-graphviz (0.20.1-2) unstable; urgency=medium
 
   * Delete "doctest-output" directory from dist-packages
@@ -11,7 +31,7 @@ python-graphviz (0.20.1-1) unstable; urgency=medium
   * Bump debhelper from old 12 to 13.
   * Update standards version to 4.6.2, no changes needed.
 
-  [ Diane Trout ] 
+  [ Diane Trout ]
   * New upstream release
 
  -- Diane Trout <diane@ghic.org>  Wed, 18 Aug 2021 16:56:02 -0700

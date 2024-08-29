@@ -1,7 +1,7 @@
 Unflatten
 ---------
 
-To prepocess the DOT_ source of a :class:`.Graph` or :class:`.Digraph` with
+To preprocess the DOT_ source of a :class:`.Graph` or :class:`.Digraph` with
 the `unflatten <DOT unflatten>`_ preprocessor
 (`manpage <DOT unflatten_>`_, `PDF <DOT unflatten_pdf_>`_),
 use the :meth:`~.Graph.unflatten` method.
@@ -16,7 +16,7 @@ use the :meth:`~.Graph.unflatten` method.
 
 .. doctest::
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> w.view()  # doctest: +SKIP
 
@@ -34,7 +34,7 @@ use the :meth:`~.Graph.unflatten` method.
 
 .. doctest::
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> u.view()  # doctest: +SKIP
 
@@ -54,7 +54,7 @@ with the same basic API as :class:`.Graph` or :class:`.Digraph` objects
 
 .. doctest::
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> u.view()  # doctest: +SKIP
 

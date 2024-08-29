@@ -1,3 +1,4 @@
+import contextlib
 import pathlib
 import os
 import shutil
@@ -35,8 +36,12 @@ def test_render_missing_file(quiet, engine='dot', format_='pdf'):
       graphviz.RequiredArgumentError, r'without renderer'),
      (['dot', 'ps', 'nonfilepath', 'ps', ''], ValueError, r'unknown formatter')],
     ids=lambda x: getattr(x, '__name__', x))
-def test_render_unknown_parameter_raises(args, expected_exception, match):
-    with pytest.raises(expected_exception, match=match), pytest.deprecated_call():
+def test_render_unknown_parameter_raises(args, expected_exception, match,
+                                         supported_number=3):
+    checker = (pytest.deprecated_call(match=rf'{supported_number:d} positional args')
+               if len(args) > supported_number
+               else contextlib.nullcontext())
+    with pytest.raises(expected_exception, match=match), checker:
         graphviz.render(*args)
 
 
@@ -44,7 +49,9 @@ def test_render_unknown_parameter_raises(args, expected_exception, match):
 @pytest.mark.parametrize(
     'format_, renderer, formatter, expected_suffix',
     [('pdf', None, None, 'pdf'),
-     ('plain', 'dot', 'core', 'core.dot.plain')])
+     pytest.param('plain', 'dot', 'core', 'core.dot.plain',
+         marks=pytest.mark.xfail('graphviz.version() == (5, 0, 1)',
+         reason='https://gitlab.com/graphviz/graphviz/-/issues/2270'))])
 @pytest.mark.parametrize('engine', ['dot'])
 def test_render(capsys, tmp_path, engine, format_, renderer, formatter,
                 expected_suffix, filename='hello.gv',
@@ -53,12 +60,13 @@ def test_render(capsys, tmp_path, engine, format_, renderer, formatter,
     assert lpath.write_bytes(data) == len(data) == lpath.stat().st_size
     rendered = lpath.with_suffix(f'{lpath.suffix}.{expected_suffix}')
 
-    with pytest.deprecated_call():
+    with pytest.deprecated_call(match=r'3 positional args'):
         result = graphviz.render(engine, format_, str(lpath),
                                  renderer, formatter)
 
     assert result == str(rendered)
 
+    assert rendered.exists()
     assert rendered.stat().st_size
     assert capsys.readouterr() == ('', '')
 
@@ -70,6 +78,7 @@ def test_render_img(capsys, tmp_path, files_path, engine='dot', format_='pdf'):
 
     img_path = subdir / 'dot_red.png'
     shutil.copy(files_path / img_path.name, img_path)
+    assert img_path.exists()
     assert img_path.stat().st_size
 
     gv_path = subdir / 'img.gv'
@@ -82,6 +91,7 @@ def test_render_img(capsys, tmp_path, files_path, engine='dot', format_='pdf'):
     with _common.as_cwd(tmp_path):
         assert graphviz.render(engine, format_, gv_rel) == str(rendered_rel)
 
+    assert rendered.exists()
     assert rendered.stat().st_size
     assert capsys.readouterr() == ('', '')
 
@@ -102,6 +112,7 @@ def test_render_outfile_differnt_parent(capsys, tmp_path,
 
     assert result == os.fspath(outfile)
 
+    assert outfile.exists()
     assert outfile.stat().st_size
 
     assert capsys.readouterr() == ('', '')

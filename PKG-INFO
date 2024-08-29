@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: graphviz
-Version: 0.20.1
+Version: 0.20.2
 Summary: Simple Python interface for Graphviz
 Home-page: https://github.com/xflr6/graphviz
 Author: Sebastian Bank
@@ -19,16 +19,30 @@ Classifier: Intended Audience :: Science/Research
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
 Classifier: Topic :: Scientific/Engineering :: Visualization
-Requires-Python: >=3.7
-Provides-Extra: dev
-Provides-Extra: test
-Provides-Extra: docs
+Requires-Python: >=3.8
+Description-Content-Type: text/x-rst
 License-File: LICENSE.txt
+Provides-Extra: dev
+Requires-Dist: tox>=3; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: pep8-naming; extra == "dev"
+Requires-Dist: wheel; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Provides-Extra: test
+Requires-Dist: pytest<8.1,>=7; extra == "test"
+Requires-Dist: pytest-mock>=3; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: coverage; extra == "test"
+Provides-Extra: docs
+Requires-Dist: sphinx<7,>=5; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints; extra == "docs"
+Requires-Dist: sphinx-rtd-theme; extra == "docs"
 
 Graphviz
 ========
@@ -69,7 +83,7 @@ Links
 Installation
 ------------
 
-This package runs under Python 3.7+, use pip_ to install:
+This package runs under Python 3.8+, use pip_ to install:
 
 .. code:: bash
 
@@ -134,11 +148,11 @@ Check the generated source code:
         B -> L [constraint=false]
     }
 
-Save and render the source code:
+Save and render the source code (skip/ignore any ``doctest_mark_exe()`` lines):
 
 .. code:: python
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> dot.render('doctest-output/round-table.gv').replace('\\', '/')
     'doctest-output/round-table.gv.pdf'
@@ -147,7 +161,7 @@ Save and render and view the result:
 
 .. code:: python
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> dot.render('doctest-output/round-table.gv', view=True)  # doctest: +SKIP
     'doctest-output/round-table.gv.pdf'

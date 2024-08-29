@@ -2,7 +2,7 @@ Formats
 -------
 
 To use a different `output file format <DOT outputs_>`_ than the default PDF,
-you canuse the ``format`` argument when creating your :class:`.Graph`
+you can use the ``format`` argument when creating your :class:`.Graph`
 or :class:`.Digraph` object:
 
 .. doctest::
@@ -17,7 +17,7 @@ object:
 
 .. doctest::
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> dot = graphviz.Digraph('hello')
     >>> dot.edge('hello', 'world')

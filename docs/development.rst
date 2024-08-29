@@ -37,7 +37,7 @@ Install in a venv_ in development mode (includes all ``extras_require``):
 
 .. hint::
 
-    alteratively: ``pip install -e .[dev,test,docs]``
+    alternatively: ``pip install -e .[dev,test,docs]``
     (same as ``pip install -r requirements.txt``)
 
 
@@ -48,7 +48,7 @@ Tests
 
 - GitHub Actions
   `Build workflow <https://github.com/xflr6/graphviz/actions/workflows/build.yaml>`_
-  (Python 3.7 to 3.10, experimental: PyPy 3.7 to 3.8)
+  (Python 3.8 to 3.11, experimental: PyPy 3.8 to 3.9)
 - Codecov
   `test coverage <https://app.codecov.io/gh/xflr6/graphviz>`_
   (`main branch <https://app.codecov.io/gh/xflr6/graphviz/branch/master>`_)
@@ -57,14 +57,14 @@ Tests
 
 .. code:: bash
 
-    $ ./run-tests.py
+    $ python run-tests.py
 
 Run **only tests** that are expected to ``PASS`` or ``XFAIL``
 **without Graphviz** executables:
 
 .. code:: bash
 
-    $ ./run-tests.py --skip-exe
+    $ python run-tests.py --skip-exe
 
 **Run the tests** with tox_ (**installing** into a virtualenv_ or many of them):
 
@@ -86,7 +86,7 @@ and `Python versions <pytype_python_versions_>`_):
 
 .. code:: bash
 
-    $ ./lint-code.py
+    $ python lint-code.py
 
 
 Documentation
@@ -102,7 +102,7 @@ Documentation
 
 .. code:: bash
 
-    $ ./build-docs.py
+    $ python build-docs.py
 
 
 Overview
@@ -120,7 +120,7 @@ Use ``help()`` in the REPL to shows/structure methods and attributes in dependen
     In the above, cooperative multiple inheritance classes reveal their
     (diamond) MRO structure and methods are shown in **method resolution order** (MRO),
     which should be an extension of their dependency relation...
-    
+
     TLDR; you might find this presentation helps to follow the implementation.
 
 
