@@ -39,7 +39,7 @@ class Source(rendering.Render, saving.Save,
     """
 
     @classmethod
-    @_tools.deprecate_positional_args(supported_number=2)
+    @_tools.deprecate_positional_args(supported_number=1)
     def from_file(cls, filename: typing.Union[os.PathLike, str],
                   directory: typing.Union[os.PathLike, str, None] = None,
                   format: typing.Optional[str] = None,
@@ -73,7 +73,7 @@ class Source(rendering.Render, saving.Save,
                    renderer=renderer, formatter=formatter,
                    loaded_from_path=filepath)
 
-    @_tools.deprecate_positional_args(supported_number=2)
+    @_tools.deprecate_positional_args(supported_number=1)
     def __init__(self, source: str,
                  filename: typing.Union[os.PathLike, str, None] = None,
                  directory: typing.Union[os.PathLike, str, None] = None,
@@ -89,6 +89,10 @@ class Source(rendering.Render, saving.Save,
                          encoding=encoding)
         self._loaded_from_path = loaded_from_path
         self._source = source
+
+    # work around pytype false alarm
+    _source: str
+    _loaded_from_path: typing.Optional[os.PathLike]
 
     def _copy_kwargs(self, **kwargs):
         """Return the kwargs to create a copy of the instance."""
@@ -118,7 +122,7 @@ class Source(rendering.Render, saving.Save,
             source += '\n'
         return source
 
-    @_tools.deprecate_positional_args(supported_number=2)
+    @_tools.deprecate_positional_args(supported_number=1)
     def save(self, filename: typing.Union[os.PathLike, str, None] = None,
              directory: typing.Union[os.PathLike, str, None] = None, *,
              skip_existing: typing.Optional[bool] = None) -> str:

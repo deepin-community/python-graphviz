@@ -17,7 +17,7 @@ of your :class:`.Graph` or :class:`.Digraph` object:
 
 .. doctest::
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> h.pipe(format='pdf')[:4]
     b'%PDF'
@@ -33,7 +33,7 @@ of your :class:`.Graph` or :class:`.Digraph` object:
     Because :meth:`~.Graph.pipe` returns the raw ``stdout``
     from the layout subprocess by default (:class:`bytes`),
     you usually want to decode the return value
-    when piping into formats like ``'svg'`` or ``'plain'``, 
+    when piping into formats like ``'svg'`` or ``'plain'``,
 
 .. caution::
 

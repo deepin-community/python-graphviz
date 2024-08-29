@@ -319,10 +319,10 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#graph-1
      |  Data descriptors inherited from graphviz.dot.GraphSyntax:
      |
      |  __dict__
-     |      dictionary for instance variables (if defined)
+     |      dictionary for instance variables
      |
      |  __weakref__
-     |      list of weak references to the object (if defined)
+     |      list of weak references to the object
      |
      |  ----------------------------------------------------------------------
      |  Methods inherited from BaseGraph:
@@ -395,6 +395,12 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#graph-1
      |          and ``compass`` (e.g. ``sw``).
      |          See :ref:`details in the User Guide <node-ports-compass>`.
      |
+     |      Attention:
+     |          When rendering ``label``, backslash-escapes
+     |          and strings of the form ``<...>`` have a special meaning.
+     |          See the sections :ref:`backslash-escapes` and
+     |          :ref:`quoting-and-html-like-labels` in the user guide for details.
+     |
      |  edges(self, tail_head_iter) -> None
      |      Create a bunch of edges.
      |
@@ -419,6 +425,12 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#graph-1
      |          name: Unique identifier for the node inside the source.
      |          label: Caption to be displayed (defaults to the node ``name``).
      |          attrs: Any additional node attributes (must be strings).
+     |
+     |      Attention:
+     |          When rendering ``label``, backslash-escapes
+     |          and strings of the form ``<...>`` have a special meaning.
+     |          See the sections :ref:`backslash-escapes` and
+     |          :ref:`quoting-and-html-like-labels` in the user guide for details.
      |
      |  subgraph(self,
                  graph=None,
@@ -504,7 +516,7 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#graph-1
      |          outfile: Path for the rendered output file.
      |          engine: Layout engine for rendering
      |              (``'dot'``, ``'neato'``, ...).
-     |          raise_if_result_exits: Raise :exc:`graphviz.FileExistsError`
+     |          raise_if_result_exists: Raise :exc:`graphviz.FileExistsError`
      |              if the result file exists.
      |          overwrite_source: Allow ``dot`` to write to the file it reads from.
      |              Incompatible with ``raise_if_result_exists``.
@@ -831,10 +843,10 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#digraph-1
      |  Data descriptors inherited from graphviz.dot.DigraphSyntax:
      |
      |  __dict__
-     |      dictionary for instance variables (if defined)
+     |      dictionary for instance variables
      |
      |  __weakref__
-     |      list of weak references to the object (if defined)
+     |      list of weak references to the object
      |
      |  ----------------------------------------------------------------------
      |  Methods inherited from BaseGraph:
@@ -907,6 +919,12 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#digraph-1
      |          and ``compass`` (e.g. ``sw``).
      |          See :ref:`details in the User Guide <node-ports-compass>`.
      |
+     |      Attention:
+     |          When rendering ``label``, backslash-escapes
+     |          and strings of the form ``<...>`` have a special meaning.
+     |          See the sections :ref:`backslash-escapes` and
+     |          :ref:`quoting-and-html-like-labels` in the user guide for details.
+     |
      |  edges(self, tail_head_iter) -> None
      |      Create a bunch of edges.
      |
@@ -931,6 +949,12 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#digraph-1
      |          name: Unique identifier for the node inside the source.
      |          label: Caption to be displayed (defaults to the node ``name``).
      |          attrs: Any additional node attributes (must be strings).
+     |
+     |      Attention:
+     |          When rendering ``label``, backslash-escapes
+     |          and strings of the form ``<...>`` have a special meaning.
+     |          See the sections :ref:`backslash-escapes` and
+     |          :ref:`quoting-and-html-like-labels` in the user guide for details.
      |
      |  subgraph(self,
                  graph=None,
@@ -1016,7 +1040,7 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#digraph-1
      |          outfile: Path for the rendered output file.
      |          engine: Layout engine for rendering
      |              (``'dot'``, ``'neato'``, ...).
-     |          raise_if_result_exits: Raise :exc:`graphviz.FileExistsError`
+     |          raise_if_result_exists: Raise :exc:`graphviz.FileExistsError`
      |              if the result file exists.
      |          overwrite_source: Allow ``dot`` to write to the file it reads from.
      |              Incompatible with ``raise_if_result_exists``.
@@ -1380,7 +1404,7 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#source-1
      |  ----------------------------------------------------------------------
      |  Data and other attributes defined here:
      |
-     |  __annotations__ = {}
+     |  __annotations__ = {'_loaded_from_path': typing.Optional[os.PathLike], ...
      |
      |  ----------------------------------------------------------------------
      |  Methods inherited from graphviz.rendering.Render:
@@ -1425,7 +1449,7 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#source-1
      |          outfile: Path for the rendered output file.
      |          engine: Layout engine for rendering
      |              (``'dot'``, ``'neato'``, ...).
-     |          raise_if_result_exits: Raise :exc:`graphviz.FileExistsError`
+     |          raise_if_result_exists: Raise :exc:`graphviz.FileExistsError`
      |              if the result file exists.
      |          overwrite_source: Allow ``dot`` to write to the file it reads from.
      |              Incompatible with ``raise_if_result_exists``.
@@ -1607,10 +1631,10 @@ https://github.com/xflr6/graphviz/blob/master/docs/api.rst#source-1
      |  Data descriptors inherited from graphviz.base.LineIterable:
      |
      |  __dict__
-     |      dictionary for instance variables (if defined)
+     |      dictionary for instance variables
      |
      |  __weakref__
-     |      list of weak references to the object (if defined)
+     |      list of weak references to the object
      |
      |  ----------------------------------------------------------------------
      |  Data descriptors inherited from graphviz.parameters.engines.Engine:

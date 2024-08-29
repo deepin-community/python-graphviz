@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 class Save(encoding.Encoding, base.Base):
     """Save DOT source lines to file."""
 
-    directory: str = ''
+    directory: typing.Union[str, bytes] = ''
 
     _default_extension = _defaults.DEFAULT_SOURCE_EXTENSION
 
@@ -50,7 +50,7 @@ class Save(encoding.Encoding, base.Base):
         """The target path for saving the DOT source file."""
         return os.path.join(self.directory, self.filename)
 
-    @_tools.deprecate_positional_args(supported_number=2)
+    @_tools.deprecate_positional_args(supported_number=1)
     def save(self, filename: typing.Union[os.PathLike, str, None] = None,
              directory: typing.Union[os.PathLike, str, None] = None, *,
              skip_existing: typing.Optional[bool] = False) -> str:

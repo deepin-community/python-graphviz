@@ -7,7 +7,7 @@ The Graphviz_ layout `engines <DOT layouts_>`_ support a number of
 *centered*, *left*-justified, *right*-justified)
 and ``\N``, ``\G``, ``\L``
 (expanded to the current *node* name, *graph* name, object *label*).
-To be able to use them from this library (e.g. for labels),
+To be able to use them from this library (e.g., for labels),
 backslashes  in strings are (mostly) passed on **as is**.
 
 .. attention::
@@ -62,7 +62,7 @@ use the :func:`graphviz.escape` function
 
 .. doctest::
 
-    >>> doctest_mark_exe()
+    >>> doctest_mark_exe()  # skip this line
 
     >>> bs.render(format='svg', directory='doctest-output').replace('\\', '/')
     'doctest-output/literal_backslash.gv.svg'
